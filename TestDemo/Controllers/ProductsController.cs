@@ -8,7 +8,6 @@ using TestDemo.Models;
 
 namespace TestDemo.Controllers
 {
-   // [Authorize]
     public class ProductsController : Controller
     {
 

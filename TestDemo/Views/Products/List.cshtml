@@ -1,13 +1,19 @@
-﻿@model IEnumerable<TestDemo.Models.Product>
+﻿@using TestDemo.Utils
+@model IEnumerable<TestDemo.Models.Product>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Product List";
+}
+
+@if (!User.IsInRole(AppStrings.AppRoleNames.Customer))
+{
+    @Html.ActionLink("Add Product", "Add", "Products", null, new {@class = "btn btn-info mb-3"})
 }
 
 @if (!Model.Any())
 {
     <div class="alert alert-danger" role="alert">
-        Unfortunately, the database is empty at the moment.
+        Unfortunately, the database of products is empty at the moment.
     </div>
 }
 else
@@ -15,30 +21,36 @@ else
     <div class="table-responsive">
         <table class="table table-sm table-dark table-hover ">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Manufacturer</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Product Code</th>
-                    <th scope="col">Price</th>
-                    <th scope="col"></th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Manufacturer</th>
+                <th scope="col">Name</th>
+                <th scope="col">Product Code</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
             </thead>
             <tbody>
 
-                @for (var i = 0; i < Model.Count(); i++)
-                {
-                    var row = i + 1;
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+                var row = i + 1;
 
-                    <tr>
-                        <th scope="row">@row</th>
-                        <td>@Model.ElementAt(i).Manufacturer.Name</td>
-                        <td>@Model.ElementAt(i).Name</td>
-                        <td>@Model.ElementAt(i).ProductCode</td>
-                        <td>@Model.ElementAt(i).Price.ToString("N") tenge</td>
+                <tr>
+                    <th scope="row">@row</th>
+                    <td>@Model.ElementAt(i).Manufacturer.Name</td>
+                    <td>@Model.ElementAt(i).Name</td>
+                    <td>@Model.ElementAt(i).ProductCode</td>
+                    <td>@Model.ElementAt(i).Price.ToString("N") tenge</td>
 
-                    </tr>
-                }
+                    @if (!User.IsInRole(AppStrings.AppRoleNames.Customer))
+                    {
+                        <td>@Html.ActionLink("Edit", "Edit", "Products", new {id = row}, new {@class = "btn btn-outline-light"})</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Products", new {id = row}, new {@class = "btn btn-danger"})</td>
+                    }
+
+                </tr>
+            }
             </tbody>
         </table>
     </div>

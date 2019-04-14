@@ -1,9 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var home = ViewBag.Title.Equals("Home Page") ? "active" : string.Empty;
+    var about = ViewBag.Title.Equals("About") ? "active" : string.Empty;
+    var contact = ViewBag.Title.Equals("Contact") ? "active" : string.Empty;
+    var products = ViewBag.Title.Equals("Product List") ? "active" : string.Empty;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,12 +24,12 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
-            <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-            <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
-            <li class="nav-item">@Html.ActionLink("Product List", "List", "Products", null, new { @class = "nav-link" })</li>
+            <li class="nav-item @home">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
+            <li class="nav-item @about">@Html.ActionLink("About", "About", "Home", null, new {@class = "nav-link"})</li>
+            <li class="nav-item @contact">@Html.ActionLink("Contact", "Contact", "Home", null, new {@class = "nav-link"})</li>
+            <li class="nav-item @products">@Html.ActionLink("Product List", "List", "Products", null, new {@class = "nav-link"})</li>
         </ul>
-        @Html.Partial("_LoginPartial")    
+        @Html.Partial("_LoginPartial")
     </div>
 </nav>
 
@@ -30,7 +37,7 @@
     @RenderBody()
     <hr/>
     <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <p>&copy; @DateTime.Now.Year - © Kamil Ushurbakiyev</p>
     </footer>
 </div>
 
