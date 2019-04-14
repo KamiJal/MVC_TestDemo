@@ -97,7 +97,22 @@ namespace TestDemo.Migrations
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-            
+
+
+            Sql("INSERT INTO Manufacturers (Name) VALUES ('LG')");
+            Sql("INSERT INTO Manufacturers (Name) VALUES ('Samsung')");
+            Sql("INSERT INTO Manufacturers (Name) VALUES ('Sony')");
+
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('32LH590U', 1, 69323, 89990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('55UJ651V', 1, 72612, 299990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('55C8PLA', 1, 79805, 799990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('UE43M5500AUXCE', 2, 73057, 164990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('UE49MU6500UXCE', 2, 73062, 242990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('UE55KU6000UXCE', 2, 68387, 279990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('KDL32WD603', 3, 67880, 129990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('KDL40WD653', 3, 68685, 149990)");
+            Sql("INSERT INTO Products (Name, ManufacturerId, ProductCode, Price) VALUES ('KDL48WD653BR', 3, 67882, 209990)");
+
         }
         
         public override void Down()

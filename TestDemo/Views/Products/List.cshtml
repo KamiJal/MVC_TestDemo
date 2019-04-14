@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TestDemo.Models.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (!Model.Any())
+{
+    <div class="alert alert-danger" role="alert">
+        Unfortunately, the database is empty at the moment.
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-sm table-dark table-hover ">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Manufacturer</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Product Code</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (var i = 0; i < Model.Count(); i++)
+                {
+                    var row = i + 1;
+
+                    <tr>
+                        <th scope="row">@row</th>
+                        <td>@Model.ElementAt(i).Manufacturer.Name</td>
+                        <td>@Model.ElementAt(i).Name</td>
+                        <td>@Model.ElementAt(i).ProductCode</td>
+                        <td>@Model.ElementAt(i).Price.ToString("N") tenge</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
