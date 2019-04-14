@@ -12,11 +12,14 @@ namespace TestDemo.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = AppStrings.ErrorRequired)]
+        [StringLength(255)]
         public string Name { get; set; }
 
         [Required(ErrorMessage = AppStrings.ErrorRequired)]
         [Display(Name = AppStrings.DisplayNameManufacturer)]
         public int ManufacturerId { get; set; }
+
+        public Manufacturer Manufacturer { get; set; }
 
         [Required(ErrorMessage = AppStrings.ErrorRequired)]
         [Display(Name = AppStrings.DisplayNameProductCode)]
