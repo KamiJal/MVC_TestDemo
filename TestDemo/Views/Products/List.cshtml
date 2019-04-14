@@ -19,7 +19,7 @@
 else
 {
     <div class="table-responsive">
-        <table class="table table-sm table-dark table-hover ">
+        <table id="products" class="table table-sm table-dark table-hover ">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -27,7 +27,12 @@ else
                 <th scope="col">Name</th>
                 <th scope="col">Product Code</th>
                 <th scope="col">Price</th>
-                <th scope="col"></th>
+
+                @if (!User.IsInRole(AppStrings.AppRoleNames.Customer))
+                {
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                }
             </tr>
             </thead>
             <tbody>
@@ -54,4 +59,23 @@ else
             </tbody>
         </table>
     </div>
+}
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document).ready(function() {
+            $("#products").DataTable({
+                pagingType: 'simple_numbers',
+                info: false,
+                language: {
+                    paginate: {
+                        previous: '<img src="/Icons/chevron-circle-left-solid.svg" height="16px"/>',
+                        next: '<img src="/Icons/chevron-circle-right-solid.svg" height="16px"/>'
+                    }
+                }
+            });
+        });
+    </script>
 }
