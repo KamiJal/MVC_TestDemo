@@ -50,8 +50,8 @@ else
 
                     @if (!User.IsInRole(AppStrings.AppRoleNames.Customer))
                     {
-                        <td>@Html.ActionLink("Edit", "Edit", "Products", new {id = row}, new {@class = "btn btn-outline-light"})</td>
-                        <td>@Html.ActionLink("Delete", "Delete", "Products", new {id = row}, new {@class = "btn btn-danger"})</td>
+                        <td>@Html.ActionLink("Edit", "Edit", "Products", new {id = row}, new {@class = "btn btn-sm btn-outline-light"})</td>
+                        <td>@Html.ActionLink("Delete", "Delete", "Products", new {id = row}, new {@class = "btn btn-sm btn-danger"})</td>
                     }
 
                 </tr>

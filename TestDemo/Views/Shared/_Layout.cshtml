@@ -1,8 +1,10 @@
-﻿@{
+﻿@using TestDemo.Utils
+@{
     var home = ViewBag.Title.Equals("Home Page") ? "active" : string.Empty;
     var about = ViewBag.Title.Equals("About") ? "active" : string.Empty;
     var contact = ViewBag.Title.Equals("Contact") ? "active" : string.Empty;
     var products = ViewBag.Title.Equals("Product List") ? "active" : string.Empty;
+    var users = ViewBag.Title.Equals("User List") ? "active" : string.Empty;
 }
 
 <!DOCTYPE html>
@@ -24,10 +26,16 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item @home">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
-            <li class="nav-item @about">@Html.ActionLink("About", "About", "Home", null, new {@class = "nav-link"})</li>
-            <li class="nav-item @contact">@Html.ActionLink("Contact", "Contact", "Home", null, new {@class = "nav-link"})</li>
-            <li class="nav-item @products">@Html.ActionLink("Product List", "List", "Products", null, new {@class = "nav-link"})</li>
+            <li class="nav-item @home">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
+            <li class="nav-item @about">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
+            <li class="nav-item @contact">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+            <li class="nav-item @products">@Html.ActionLink("Product List", "List", "Products", null, new { @class = "nav-link" })</li>
+
+            @if (User.IsInRole(AppStrings.AppRoleNames.Admin))
+            {
+                <li class="nav-item @users">@Html.ActionLink("User List", "Index", "Admin", null, new { @class = "nav-link" })</li>
+            }
+
         </ul>
         @Html.Partial("_LoginPartial")
     </div>
